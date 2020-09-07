@@ -17,6 +17,7 @@ function Draw() {
   } else {
     background('blue');
   }
+  
 
  // this ellipse should be 200x200 pixels in the center of the screen
   ellipse(width/2, height/2, 200, 200);

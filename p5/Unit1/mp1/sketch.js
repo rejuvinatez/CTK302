@@ -21,7 +21,7 @@ if (mouseIsPressed) {
   fill('black');
   textFont(f);
   textSize(30);
-  text('Dyno is a sneaky villain who is hard to find. He can be really quiet when moving and stealthy',40, 600, 600, 200) ;
+  text('Dyno is a sneaky villain who is hard to find. He can be really quiet when moving and stealthy,',40, 600, 600, 200) ;
 
     fill('red');
   ellipse(250,250,500,500);

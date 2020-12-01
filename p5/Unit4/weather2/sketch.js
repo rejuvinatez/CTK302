@@ -1,16 +1,24 @@
+// Note - you must change line 19 to your own APPID to get this to work!
+
 var weather;
 var weatherID = 0; // returned in the JSON weather element
 var myState = 0;
+var Chicago;
 var x = 0;
+var a = 10;
+var b = 30;
+var c = 35;
+var d = 0;
+
 var windspeed = 0;
-var temperature = 0;
-var humidity = 0;
-var name = '';
-let img;
+var temp = 0;
+var hum = 0;
 
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 800);
+  Chicago = loadImage('assets/Chicago.png');
+  imageMode(CENTER);
 
   // HERE is the call to get the weather.
 
@@ -24,11 +32,6 @@ function setup() {
 
   loadJSON(myBigString, gotData); // that gotData function happens when JSON comes back.
 
-  // here we use a callback to display the image after loading
- loadImage('assets/chicago.png', img => {
-   image(img, 100, 110);
- });
-
 }
 
 
@@ -37,15 +40,17 @@ function gotData(data) {
   weather = data;
   console.log(weather); // for debugging purposes, print out the JSON data when we get it.
   windspeed = weather.wind.speed;
-  temperature = weather.main.temp;
-  humidity = weather.main.humidity;
-  name = weather.name;
+  temp = weather.main.temp;
+  hum = weather.main.humidity;
 
 
 }
 
 
 function draw() {
+
+
+
   switch (myState) {
     case 0:
       if (weather) {
@@ -53,28 +58,54 @@ function draw() {
       }
       break;
 
-    case 1:
 
-      //
-      background('blue');
+
+
+
+
+
+
+    case 1:
+      background('#519df5');
+      image(Chicago, width / 2, height / 2, width, height);
       fill('yellow');
-      text("What is the weather in " + weather.name + "?", 20, 20);
+      textSize(20);
+      text("Windy City " + weather.name + "?", 20, 20);
       text("windspeed is " + windspeed, 20, 40);
-      text("humidity is " + humidity, 20, 60);
-      text("temperature is " + temperature, 20, 80);
+      text('The temperature is ' + weather.main.temp, 20, 240);
+      text('The Humidity is ' + weather.main.humidity, 20, 260);
+
+      var color = 0;
+      color = map(hum, 0, 200, 2, height - 10);
+
+
+
+      fill('#e0fffc');
+      rect(0, 700, width, 100);
+      fill('red');
+      ellipse(width - 25, height - 25, 40, 40);
+      stroke(8);
+      //fill('black');
+      rect(width - 43, height - 15, 35, -300);
+      //fill('black');
+      ellipse(width - 25.7, 85, 35, 35);
+      //fill('black');
+      ellipse(width - 25, height - 25, 45, 45);
+
 
 
       // cloud
       fill('white');
       noStroke();
       ellipse(x, 300, 200, 100);
-      ellipse(x + 50, 350, 300, 70);
+      ellipse(x + 50, 360, 275, 80);
 
       // move the cloud's x position
-      x = x + windspeed / 4;
+      x = x + windspeed / 2;
       if (x > width) x = 0;
 
       break;
+
 
   }
 }

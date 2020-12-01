@@ -3,7 +3,7 @@
 var weather;
 var weatherID = 0; // returned in the JSON weather element
 var myState = 0;
-var Chicago;
+var chicago;
 var x = 0;
 var a = 10;
 var b = 30;
@@ -17,7 +17,7 @@ var hum = 0;
 
 function setup() {
   createCanvas(800, 800);
-  Chicago = loadImage('assets/Chicago.png');
+  chicago = loadImage('assets/chicago.png');
   imageMode(CENTER);
 
   // HERE is the call to get the weather.
@@ -67,7 +67,7 @@ function draw() {
 
     case 1:
       background('#519df5');
-      image(Chicago, width / 2, height / 2, width, height);
+      image(chicago, width / 2, height / 2, width, height);
       fill('yellow');
       textSize(20);
       text("Windy City " + weather.name + "?", 20, 20);
